@@ -40,3 +40,24 @@ class Account():
         else:
             self.balance -= amount
 
+""" assert """
+class Account():
+    def __init__(self, balance, is_frozen):
+        self.balance = balance
+        self.is_frozen = is_frozen
+    
+    def check(self):
+        #조회
+        print("계좌 잔액은 {0}원 입니다.".format(self.balance))
+    
+    def deposit(self, amount):
+        #입금
+        assert amount > 0, "0 이하의 액수는 입금할 수 없습니다."
+        self.balance += amount
+
+    def withdraw(self, amount):
+        #출금
+        assert !self.is_frozen, "동결된 계좌에서 출금할 수 없습니다."
+        assert amount > 0, "0 이하의 액수는 출금할 수 없습니다."
+        assert amount <= self.balance, "계좌 잔액이 부족합니다."
+        self.balance -= amount
